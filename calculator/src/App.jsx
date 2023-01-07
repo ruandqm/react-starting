@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
+import History from './components/History/index'
+import Result from './components/Result'
 
 export default function App() {
   const [result, setResult] = useState(0)
+  const [historyResults, setHistory] = useState([])
+
+  useEffect(() => {
+    const historySend = historyResults.slice()
+    historySend.push(result)
+    setHistory(historySend)
+  }, [result])
+
   function somar() {
     let input1 = document.querySelector("#n1")
     let input2 = document.querySelector("#n2")
@@ -10,6 +20,7 @@ export default function App() {
     let n2 = parseFloat(input2.value)
 
     let resultado = n1 + n2
+
     setResult(resultado)
   }
 
@@ -20,6 +31,7 @@ export default function App() {
     let n2 = parseFloat(input2.value)
 
     let resultado = n1 - n2
+
     setResult(resultado)
   }
 
@@ -30,6 +42,7 @@ export default function App() {
     let n2 = parseFloat(input2.value)
 
     let resultado = n1 * n2
+
     setResult(resultado)
   }
   function dividir() {
@@ -39,6 +52,7 @@ export default function App() {
     let n2 = parseFloat(input2.value)
 
     let resultado = n1 / n2
+
     setResult(resultado)
   }
 
@@ -96,6 +110,7 @@ export default function App() {
                       <h3>Resultado: {result}</h3>
                     </div></div>
                 </div>
+                <History values={historyResults} />
               </div>
             </div>
           </div>
