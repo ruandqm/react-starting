@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Result from "../Result";
+import Result from "../../Atoms/Result";
 
 export default function History(props) {
 
